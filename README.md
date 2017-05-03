@@ -12,6 +12,7 @@ allprojects {
 }
 ```
 示例如图
+
 ![maven服务器配置](/gradle_maven_repo.PNG)
 
 2) 初始化SDK
