@@ -1,4 +1,4 @@
-# 集成Autel SDK 开发环境
+# Autel SDK 开发环境集成
 1) gradle引入SDK资源包(目前只支持Android Studio开发环境，暂不支持Eclipse)
 
 在project的gradle文件中配置maven服务器路径：
