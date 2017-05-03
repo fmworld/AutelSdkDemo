@@ -64,6 +64,8 @@ SDK提供以下模块的功能服务：Album（相册）、Battery（电池）�
 	MissionManager myMissonManager = Autel.getMissionManager();
 	myMissonManager.prepareMission(mOrbitMission, new CallbackWithOneParamProgress<Boolean>() {...});
 ```
+**任何任务都需要准备后才能有效执行**
+
 开始执行环绕任务
 ```
 	myMissonManager.startMission(new CallbackWithNoParam() {...});
