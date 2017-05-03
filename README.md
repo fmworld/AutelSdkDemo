@@ -16,6 +16,7 @@ allprojects {
 ![maven服务器配置](/gradle_maven_repo.PNG)
 
 2) 初始化SDK
+
 在需要使用SDK功能前，调用init函数初始化相关SDK功能：
 
 ``` 
@@ -39,6 +40,7 @@ allprojects {
 **NOTE: appKey 为开发者在[Autel开发平台](http:www.baidu.com)申请的应用关联钥匙**
 
 3) SDK 功能接口调用
+
 SDK提供以下模块的功能服务：Album（相册）、Battery（电池）、Camera（相机）、DSP（图传）、Firmware（固件）、FlyController（飞行控制器）、Gimbal（云台）、Mission（任务）、RemoteController（遥控器）、Codec(视频解码)。
 
 用户可以通过Autel类提供的静态方法获取对应的接口，例如获取任务模块接口：
