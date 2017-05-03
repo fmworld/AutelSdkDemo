@@ -21,15 +21,7 @@ allprojects {
 
 ``` 
     String appKey = "<SDK license should be input>";
-    Autel.init(this, appKey, new CallbackWithNoParam() {
-          @Override
-          public void onSuccess() {
-          }
-
-          @Override
-          public void onFailure(AutelError error) {
-          }
-    });
+    Autel.init(this, appKey, new CallbackWithNoParam() {...});
 
 ```
 例如在自定义Application中初始化SDK服务：
@@ -54,9 +46,7 @@ SDK提供以下模块的功能服务：Album（相册）、Battery（电池）�
 
 ## 任务模块
 
-任务模块目前支持三种任务：WaypointMission(航点任务)、OrbitMission(环绕任务)、FollowMission(跟随任务)，所有任务由任务管理器执行相关操作，任务管理器的具体操作有：prepare(准备)、start(开始)、pause(暂停)、resume(继续)，cancel(取消)、download(下载正在执行的任务)。
-
-环绕任务为例,相关操作代码如下：
+任务模块目前支持三种任务：WaypointMission(航点任务)、OrbitMission(环绕任务)、FollowMission(跟随任务)，所有任务由任务管理器执行相关操作，任务管理器的具体操作有：prepare(准备)、start(开始)、pause(暂停)、resume(继续)，cancel(取消)、download(下载正在执行的任务)。环绕任务为例，相关操作代码如下：
 
 生成环绕任务实例：
 ```
@@ -72,78 +62,23 @@ SDK提供以下模块的功能服务：Album（相册）、Battery（电池）�
 使用MissionManager来准备环绕任务orbitMission
 ```
 	MissionManager myMissonManager = Autel.getMissionManager();
-	myMissonManager.prepareMission(mOrbitMission, new CallbackWithOneParamProgress<Boolean>() {
-                        @Override
-                        public void onProgress(float v) {
-
-                        }
-
-                        @Override
-                        public void onSuccess(Boolean aBoolean) {
-                            
-                        }
-
-                        @Override
-                        public void onFailure(AutelError autelError) {
-                            
-                        }
-                    });
+	myMissonManager.prepareMission(mOrbitMission, new CallbackWithOneParamProgress<Boolean>() {...});
 ```
 开始执行环绕任务
 ```
-	myMissonManager.startMission(new CallbackWithNoParam() {
-                        @Override
-                        public void onSuccess() {
-                          
-                        }
-
-                        @Override
-                        public void onFailure(AutelError autelError) {
-                           
-                        }
-                    });
+	myMissonManager.startMission(new CallbackWithNoParam() {...});
 ```
 暂停执行环绕任务
 ```
-	myMissonManager.pauseMission(new CallbackWithNoParam() {
-                        @Override
-                        public void onSuccess() {
-                          
-                        }
-
-                        @Override
-                        public void onFailure(AutelError autelError) {
-                           
-                        }
-                    });
+	myMissonManager.pauseMission(new CallbackWithNoParam() {...});
 ```
 继续执行环绕任务
 ```
-	myMissonManager.resumeMission(new CallbackWithNoParam() {
-                        @Override
-                        public void onSuccess() {
-                          
-                        }
-
-                        @Override
-                        public void onFailure(AutelError autelError) {
-                           
-                        }
-                    });
+	myMissonManager.resumeMission(new CallbackWithNoParam() {...});
 ```
 取消执行环绕任务
 ```
-	myMissonManager.cancelMission(new CallbackWithNoParam() {
-                        @Override
-                        public void onSuccess() {
-                          
-                        }
-
-                        @Override
-                        public void onFailure(AutelError autelError) {
-                           
-                        }
-                    });
+	myMissonManager.cancelMission(new CallbackWithNoParam() {...});
 ```
 下载正在执行的任务
 ```
@@ -155,14 +90,12 @@ SDK提供以下模块的功能服务：Album（相册）、Battery（电池）�
 
                         @Override
                         public void onSuccess(AutelMission autelMission) {
-                            Toast.makeText(applicationContext, R.string.mission_download_notify, Toast.LENGTH_SHORT).show();
-                            progressBarDownload.setVisibility(View.GONE);
+                     
                         }
 
                         @Override
                         public void onFailure(AutelError autelError) {
-                            Toast.makeText(applicationContext, autelError.getDescription(), Toast.LENGTH_LONG).show();
-                            progressBarDownload.setVisibility(View.GONE);
+                           
                         }
                     });
 ```
