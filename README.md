@@ -4,7 +4,7 @@
 在project的gradle文件中配置maven服务器路径：
 ```
 allprojects {
-	repositories {
+    repositories {
         maven(){
             url "http://10.240.12.2:8081/artifactory/autel-snapshot"
         }
@@ -19,7 +19,7 @@ allprojects {
 在需要使用SDK功能前，调用init函数初始化相关SDK功能：
 
 ``` 
-	String appKey = "<SDK license should be input>";
+    String appKey = "<SDK license should be input>";
     Autel.init(this, appKey, new CallbackWithNoParam() {
           @Override
           public void onSuccess() {
@@ -58,7 +58,7 @@ SDK提供以下模块的功能服务：Album（相册）、Battery（电池）�
 
 生成环绕任务实例：
 ```
-	OrbitMission mOrbitMission = new OrbitMission();
+    OrbitMission mOrbitMission = new OrbitMission();
     mOrbitMission.lat = (float) autelLatLng.latitude;
     mOrbitMission.lng = (float) autelLatLng.longitude;
     mOrbitMission.finishReturnHeight = 20;
