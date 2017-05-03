@@ -24,6 +24,8 @@ allprojects {
     Autel.init(this, appKey, new CallbackWithNoParam() {...});
 
 ```
+**Autel.init()函数的第一个参数是会被长期持有的Context对象，为避免内存泄露，建议使用Application的Context对象**
+
 例如在自定义Application中初始化SDK服务：
 
 ![SDK初始化](/autel_sdk_init.PNG)
