@@ -29,7 +29,7 @@ allprojects {
 
 ``` 
 	String appKey = "<SDK license should be input>";
-    Autel.init(this, appKey, new CallbackWithNoParam() {...});
+    	Autel.init(this, appKey, new CallbackWithNoParam() {...});
 ```
 Autel.init()函数的第一个参数是会被**长期持有**的Context对象，为避免**内存泄露**，建议使用Application的Context对象
 
@@ -56,9 +56,9 @@ SDK提供以下模块的功能服务：Album（相册）、Battery（电池）�
 ## 相机模块
 目前可用相机类型为R12、FLIR，获取相机服务的接口时，需要通过CameraManager监听相机状态，当相机连接成功时会返回当前的相机类型，但是需要向下手动转型
 ```
-	autelCameraManager.setConnectStateListener(new CallbackWithTwoParams<CameraProduct, AutelBaseCamera>() {
-            @Override
-            public void onSuccess(CameraProduct data1, AutelBaseCamera data2) {
+		autelCameraManager.setConnectStateListener(new CallbackWithTwoParams<CameraProduct, AutelBaseCamera>() {
+            	@Override
+            	public void onSuccess(CameraProduct data1, AutelBaseCamera data2) {
                     if (data1 == CameraProduct.FLIR_DUO) {
                         AutelFLIR flir = (AutelFLIR)data2;
                     } else if (data1 == CameraProduct.R12) {
@@ -67,9 +67,9 @@ SDK提供以下模块的功能服务：Album（相册）、Battery（电池）�
                         
                     }
 
-					或者
+			//或者
 
-					if (data2 instanceof AutelFLIR) {
+			if (data2 instanceof AutelFLIR) {
                         AutelFLIR flir = (AutelFLIR)data2;
                     } else if (data2 instanceof AutelR12) {
                         AutelR12 r12 = (AutelR12)data2;
@@ -124,9 +124,9 @@ VideoResolutionAndFps具体的参数范围依赖于相机当前的视频标准Vi
         android:layout_height="match_parent" />
 
 	//或者代码中动态生成
-	 AutelCodecView autelCodecView = new AutelCodecView(this);
-     content_layout.setVisibility(View.VISIBLE);
-     content_layout.addView(autelCodecView);
+	AutelCodecView autelCodecView = new AutelCodecView(this);
+        content_layout.setVisibility(View.VISIBLE);
+        content_layout.addView(autelCodecView);
 	
 ```
 或者使用视频解码服务提供的数据监听接口获取数据
@@ -164,14 +164,14 @@ AutelCodec提供了setCodecListener和cancel两个接口，其中setCodecListene
 
 生成环绕任务实例：
 ```
-	OrbitMission mOrbitMission = new OrbitMission();
-    mOrbitMission.lat = (float) autelLatLng.latitude;
-    mOrbitMission.lng = (float) autelLatLng.longitude;
-    mOrbitMission.finishReturnHeight = 20;
-    mOrbitMission.finishedAction = missionFinishedAction;
-    mOrbitMission.speed = 3;
-    mOrbitMission.round = 3;
-    mOrbitMission.radius = 10;
+    	OrbitMission mOrbitMission = new OrbitMission();
+    	mOrbitMission.lat = (float) autelLatLng.latitude;
+    	mOrbitMission.lng = (float) autelLatLng.longitude;
+    	mOrbitMission.finishReturnHeight = 20;
+    	mOrbitMission.finishedAction = missionFinishedAction;
+    	mOrbitMission.speed = 3;
+    	mOrbitMission.round = 3;
+    	mOrbitMission.radius = 10;
 ```
 使用MissionManager来准备环绕任务mOrbitMission
 ```
@@ -211,47 +211,47 @@ AutelCodec提供了setCodecListener和cancel两个接口，其中setCodecListene
 3) 下载正在执行的任务，回调结果返回的是实际执行任务的**父类对象AutelMission**，需要开发者手动**向下转型**
 ```
 	myMissonManager.downloadMission(new CallbackWithOneParamProgress<AutelMission>() {
-			@Override
-            public void onProgress(float v) {
+		@Override
+            	public void onProgress(float v) {
 			}
 
-            @Override
-            public void onSuccess(AutelMission autelMission) {
-            	if(autelMission instanceof OrbitMission){
-					OrbitMission downloadMission = (OrbitMission)autelMission;
-				}
-            }
+            	@Override
+            	public void onSuccess(AutelMission autelMission) {
+            		if(autelMission instanceof OrbitMission){
+				OrbitMission downloadMission = (OrbitMission)autelMission;
+			}
+            	}
 
-            @Override
-            public void onFailure(AutelError autelError) {
+            	@Override
+            	public void onFailure(AutelError autelError) {
                            
-            }
+            	}
     });
 
 ```
 4) 飞行器只有执行**航点任务**和**环绕任务**时会反馈任务实时信息，跟随任务不会反馈实时信息，针对实时信息监听接口，获取的数据对象需要手动**向下转型**
 ```
 	myMissonManager.setRealTimeInfoListener(new CallbackWithTwoParams<CurrentMissionState, RealTimeInfo>() {
-            @Override
-            public void onSuccess(CurrentMissionState currentMissionState, RealTimeInfo realTimeInfo) {
-                if(realTimeInfo instanceof OrbitRealTimeInfo){
+            	@Override
+            	public void onSuccess(CurrentMissionState currentMissionState, RealTimeInfo realTimeInfo) {
+                	if(realTimeInfo instanceof OrbitRealTimeInfo){
 					
-				}else if(realTimeInfo instanceof WaypointRealTimeInfo){
-				}
-            }
+			}else if(realTimeInfo instanceof WaypointRealTimeInfo){
+			}
+            	}
 
-            @Override
-            public void onFailure(AutelError autelError) {
-            }
+            	@Override
+            	public void onFailure(AutelError autelError) {
+            	}
         });
 ```
 
 5) 跟随任务需要实时传递被跟踪物体的坐标给飞行器，此操作不由任务管理器完成，需要被执行的跟随任务自身**调用位置更新接口**，跟随任务实例化对象只能通过**静态方法**生成
 ```
 	FollowMission followMission = FollowMission.create();
-    followMission.location = mLocation;
-    followMission.finishedAction = missionFinishedAction;
-    followMission.finishReturnHeight = 20;
+    	followMission.location = mLocation;
+    	followMission.finishedAction = missionFinishedAction;
+    	followMission.finishReturnHeight = 20;
 	...
 	/**
 	 * 需要更新被跟踪物体位置坐标时，由被执行任务调用位置更新接口
