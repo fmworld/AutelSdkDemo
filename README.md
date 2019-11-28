@@ -13,7 +13,7 @@ allprojects {
 ```
 示例如图
 
-![maven服务器配置](/gradle_maven_repo.PNG)
+![maven服务器配置](/gradle_maven_repo1.PNG)
 
 引入仓库后，在开发模块的gradle文件中建立依赖
 ```
