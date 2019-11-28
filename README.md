@@ -6,7 +6,7 @@
 allprojects {
 	repositories {
         maven(){
-            url "http://10.240.12.2:8081/artifactory/autel-snapshot"
+            url "http://x.x.x.x/artifactory/autel-snapshot"
         }
     }
 }
